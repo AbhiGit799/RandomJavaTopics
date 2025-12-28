@@ -1,0 +1,6 @@
+List.of() is a factory method introduced in Java 9.
+It creates an immutable (unmodifiable) list.
+No nulls.
+Order preserved.
+Immutable => You cannot add, remove, or replace elements.
+Duplicates are allowed.

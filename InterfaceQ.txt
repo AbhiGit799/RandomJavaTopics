@@ -1,0 +1,168 @@
+Interface enables type abstraction and multiple inheritance of type.
+
+Default Methods?
+Ans = Introduced in Java 8. Allow interfaces to provide method implementations to support evolving APIs
+without breaking existing implementations.
+Ex:-
+public interface Shape{
+
+default double area(){
+return 0.0
+}
+
+}
+
+
+How are conflicts resolved when multiple interfaces have the same default method?
+Ans = The implementing class must override the method explicitly to resolve the diamond problem.
+
+interface A { default void run(){ System.out.println("A");}}
+
+interface B { default void run(){ System.out.println("B");}}
+
+Class C implements A,B{
+
+@Override
+public void run(){
+A.super.run(); // or custom implementation
+}
+
+}
+
+
+Q) Can interface have static methods?
+Ans = Yes (Java 8) static methods in interfaces are not inherited by implementing classes.
+
+
+Q) Can interface have private methods?
+Ans = Yes (Java 9) useful for sharing logic between default methods.
+
+
+
+No, Interfaces cannot have constructors because they cannot be instantiated.
+
+
+Q) Functional Interface ?
+An interface with exactly one abstract method. It can have any number of default/static methods.
+
+
+A class uses implements to implement interfaces.
+An interface can extends one or more interfaces (multiple)
+
+
+Marker Interface ?
+Ans = Interfaces with no methods, used to convey metadata/type capability to runtime or frameworks.
+Ex = Serializable,Cloneable,Remote
+
+
+Q) How does multiple inheritance work with interfaces ?
+Ans = Java allows multiple inheritance of interface (types).
+It avoids the diamond problem because interfaces don;t carry instance state,
+and conflicts in default must be resolved explicitly in the implementing class.
+
+
+Q) Sealed interfaces ?
+And Java 17. Restrict which classes/interfaces can implement/extend them.
+
+
+Q) When should you use an interface over an abstract class ?
+Ans = When you need multiple inheritance of type
+When you are defining pure contracts
+When state is not required in the base type
+When you want API flexibility via default/static methods.
+
+
+==========================================================================================================================================
+
+Functional Interface
+=====================
+Contains exactly one abstract method.
+Foundation for lambda expressions and method references.
+It can have any number of default or static methods, but only one abstract method.
+
+@FunctionalInterface is optional.
+
+
+Ex:-
+
+@FunctionalInterface
+interface MyInterface{
+void execute();
+default void log() {  System.out.println("Logging"); }
+static void info() {  System.out.println("Info"); }
+}
+
+
+Ex of Built-In functional Interfaces in Java ?
+= Predicate<T>
+= Consumer<T>
+= Supplier<T>
+= Function<T,R>
+= BiFunction<T,U,R>
+= Runnable
+= Comparator<T>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

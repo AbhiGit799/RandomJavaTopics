@@ -1,0 +1,78 @@
+Java Comparable Interface
+==========================
+The Comparable interface in Java is used to define the natural ordering of objects.
+It allows objects of a class to be compared to each other, which is essential for
+sorting and ordering collections like arrays, lists, or sets.
+
+The interface is part of the java.lang package.
+
+
+compareTo() Method in Comparable
+int compareTo(T obj)
+Compares the current object with the specified object obj. Returns a negative integer, zero, or a positive integer
+
+Negative integer → current object < specified object
+Zero → current object == specified object
+Positive integer → current object > specified object
+
+
+🚨 Things to Keep in Mind
+Single natural order: A class can only define one compareTo() method.
+Consistency with equals: Ideally, compareTo() should be consistent with equals() to avoid unexpected behavior in sorted collections.
+Null handling: compareTo() does not handle null by default; you must add checks if needed.
+
+
+⚖️ Comparable vs Comparator
+===============================
+Comparable
+----------
+java.lang
+compareTo(T obj)
+Natural ordering (default)
+Class itself implements
+When objects have a single natural sort order
+
+Comparator
+-----------
+java.util
+compare(T obj1, T obj2)
+Custom ordering (flexible)
+Separate class or lambda
+When multiple or dynamic sort orders are needed
+
+
+
+class Student implements Comparable<Student> {
+    int rollNo;
+    String name;
+
+    Student(int rollNo, String name) {
+        this.rollNo = rollNo;
+        this.name = name;
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return this.rollNo - other.rollNo; // natural ordering by roll number
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Student> list = new ArrayList<>();
+        list.add(new Student(3, "Alice"));
+        list.add(new Student(1, "Bob"));
+        list.add(new Student(2, "Charlie"));
+
+        Collections.sort(list); // uses compareTo()
+
+        for (Student s : list) {
+            System.out.println(s.rollNo + " " + s.name);
+        }
+    }
+}
+
+
+
+
+

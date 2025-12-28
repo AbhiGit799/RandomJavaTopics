@@ -1,0 +1,70 @@
+In Java, the Comparator interface (in java.util) is used to define custom sorting logic for objects.
+It allows you to compare two objects and decide their order, without modifying the class itself
+
+
+🔎 What is Comparator?
+Definition: A functional interface (@FunctionalInterface) that defines a comparison function for objects of type T.
+Purpose: Provides custom sorting rules for objects, especially when:
+You need multiple sorting strategies for the same class.
+You want to keep sorting logic separate from the class definition.
+
+
+Package: java.util.Comparator
+
+
+⚠️ Key Considerations
+Consistency: Comparators should be consistent with equals() to avoid unexpected behavior in sorted sets/maps.
+Null Handling: Handle null values explicitly if needed (Comparator.nullsFirst() / nullsLast()).
+Performance: Sorting with comparators is efficient but defining complex logic may impact readability.
+
+
+
+class Person {
+    String name;
+    int age;
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+// Comparator to sort by age
+Comparator<Person> ageComparator = (p1, p2) -> Integer.compare(p1.age, p2.age);
+
+// Comparator to sort by name
+Comparator<Person> nameComparator = (p1, p2) -> p1.name.compareTo(p2.name);
+
+// Usage
+List<Person> people = Arrays.asList(
+    new Person("Alice", 30),
+    new Person("Bob", 25),
+    new Person("Charlie", 35)
+);
+
+Collections.sort(people, ageComparator);   // Sort by age
+Collections.sort(people, nameComparator);  // Sort by name
+
+
+
+⚖️ Comparable vs Comparator
+===============================
+Comparable
+----------
+java.lang
+compareTo(T obj)
+Natural ordering (default)
+Class itself implements
+When objects have a single natural sort order
+
+Comparator
+-----------
+java.util
+compare(T obj1, T obj2)
+Custom ordering (flexible)
+Separate class or lambda
+When multiple or dynamic sort orders are needed
+
+
+
+
+

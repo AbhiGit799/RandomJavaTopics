@@ -1,0 +1,23 @@
+A factory method is a design pattern in object-oriented-programming where you provide a method
+to create objects instead of calling a constructor directly.
+It's a part of Factory Method Pattern.
+
+What is it?
+A method that returns an instance of a class (or interface) without exposing the creation logic
+to the client.
+
+The client calls the factory method, and the factory decides which class to instantiate or how to
+configure.
+
+
+Why use factory methods?
+1) Encapsulation of object creation
+2) Flexibility
+3) Immutability or constraints
+4) Improved readability
+
+
+Factory Method Pattern Vs Constructor
+-Constructor: Always creates the same class.
+-Factory Method: Can decide which class to create, apply validations, caching or return pre-built objects.
+

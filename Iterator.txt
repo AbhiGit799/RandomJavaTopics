@@ -1,0 +1,12 @@
+Iterator = An Iterator is an object that lets you traverse a collection (like a List,Set,etc.) sequentially
+withou exposing its underlying structure.
+
+It's defined by the java.util.Iterator interface and is commonly obtained by calling collection.iterator()
+
+Core Methods
+============
+boolean hasNext();  // Is there another element?
+E next();           // Get the next element
+void remove();      // Remove the last returned element by next()
+
+

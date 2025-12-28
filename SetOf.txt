@@ -1,0 +1,10 @@
+Set.of() => Immutable sets made easy.
+
+Set.of() is factory method introduced in Java 9 that creates an immutable (unmodifiable) Set.
+Ideal for small, fixed setsof unique values.
+-Immutable
+-No nulls
+-No duplicates
+-Order is unspecified
+-Optimized implementations
+-Reject nulls and duplicates

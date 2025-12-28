@@ -1,0 +1,106 @@
+A sealed interface in Java is an interface that explicitly limits which classes can implement it and which interfaces can extend it.
+This feature, finalized in Java 17, provides developers with fine-grained control over inheritance hierarchies,
+offering a middle ground between an open interface (anyone can implement it) and a completely closed one (using final for classes).
+
+
+Key Concepts
+1) Controlled Inheritance: Sealed interfaces allow the author to define a fixed, finite set of permitted subtypes,
+preventing other arbitrary classes from implementing the interface.
+
+2) Keywords: The feature uses two new contextual keywords:
+sealed: Declares the interface as sealed.
+permits: Specifies the list of permitted implementing classes and extending interfaces.
+
+Exhaustive Pattern Matching: Sealed interfaces work seamlessly with enhanced switch expressions (introduced as a preview feature and finalized in subsequent Java versions),
+allowing the compiler to ensure all possible permitted subtypes are handled, eliminating the need for a default case.
+
+
+Domain Modeling: They are particularly useful for modeling data structures where all possible variations are known,
+such as the various possible outcomes of an operation (e.g., Success or Failure in a Result interface).
+
+
+public sealed interface Shape permits Circle, Rectangle, Triangle {
+    double getArea();
+}
+
+Only Circle, Rectangle, and Triangle can implement the Shape interface.
+Any attempt to create a different implementing class outside the permits clause will result in a compilation error.
+
+
+Constraints on Permitted Subtypes
+==================================
+Any class or interface that implements or extends a sealed interface must be declared with one of the following modifiers:
+final: Cannot be extended or implemented further (e.g., a concrete Circle class).
+
+sealed: Can be extended or implemented further, but only by its own specified permitted subtypes (e.g., a sealed Rectangle interface could permit FilledRectangle).
+
+non-sealed: Reverts to normal, open inheritance rules, allowing any class or interface to extend or implement it without restriction.
+
+
+Additionally, the permitted subtypes must reside in the same module as the sealed interface,
+or in the same package if an unnamed module is used. Records and enums can also implement sealed interfaces, as they are implicitly final.
+
+=============================================================================================================================================================================
+
+The concept of sealed classes in Java was introduced in Java 15.
+
+Steps to Create a Sealed Class
+Define the class that you want to make a seal.
+Add the "sealed" keyword to the class and specify which classes are permitted to inherit it by using the "permits" keyword.
+
+=============================================================================================================================================================================
+
+📌 Key Notes on Sealed Classes
+Purpose: Sealed classes restrict which other classes can extend them.
+
+Modifiers for subclasses: Every permitted subclass must be declared as either:
+
+final → cannot be extended further
+
+sealed → can restrict further subclasses
+
+non-sealed → removes restrictions, allowing open extension
+
+=============================================================================================================================================================================
+
+🧩 What is a sealed interface?
+A sealed interface restricts which classes or interfaces can implement it.
+Just like sealed classes, all permitted implementors must be explicitly listed.
+Each permitted class must be declared as final, sealed, or non-sealed.
+
+📌 Key Points
+Shape is sealed and only Circle, Square, and Triangle can implement it.
+Each permitted class is marked final (so they can’t be extended further).
+If you wanted one of them to allow further extension, you’d mark it non-sealed.
+
+
+
+👉 This pattern is especially useful when modeling closed hierarchies (like shapes, payment methods, or states in a workflow)
+where you want compile-time safety that no other types can sneak in.
+
+=============================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+In Java, an enum is a special data type used to define a collection of named constants (fixed values).
+It improves readability, type safety, and makes code more maintainable compared to using simple integers or strings
+
+
+🔹 What is an Enum?
+Definition: An enum (short for enumeration) is like a class that contains a fixed set of constants.
+Purpose: Used when a variable should only take one out of a small set of predefined values (e.g., days of the week, directions, traffic lights).
+Keyword: Declared using the enum keyword.
+
+
+enum TrafficLight {
+    RED, GREEN, YELLOW;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        TrafficLight signal = TrafficLight.RED;
+        System.out.println(signal); // Output: RED
+    }
+}
+
+
+
+🔹 Key Features of Enums
+Type Safety: Prevents assigning invalid values (unlike strings or integers).
+Readability: Constants have meaningful names.
+Switch Support: Enums can be used directly in switch statements.
+Methods: Enums can have constructors, methods, and fields.<--------------------------------------Constructor,Methods,Fields
+Implicit Inheritance: Every enum implicitly extends java.lang.Enum.
+
+
+enum Level {
+    LOW(1), MEDIUM(2), HIGH(3);
+
+    private int code;
+
+    Level(int code) { this.code = code; }
+
+    public int getCode() { return code; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Level l = Level.HIGH;
+        System.out.println(l.getCode()); // Output: 3
+    }
+}
+
+
+⚠️ Things to Keep in Mind
+Enums cannot extend classes (they already extend Enum). <------------------------------------Cannot extend classes.
+They can implement interfaces.<--------------------------------------------Implements Interface
+Enum constants are implicitly public static final.
+You can override methods inside enums for custom behavior.
+
+
+
+
+
+
+
+
+
+
+
+
+

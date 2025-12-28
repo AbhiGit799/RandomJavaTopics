@@ -1,0 +1,9 @@
+Map.of() is immutable maps.
+Factory method introduced in JAVA 9.
+Creates immutable map.
+No nulls
+No duplicate keys
+
+
+For more than 10 entries use Map.ofEntries
+
